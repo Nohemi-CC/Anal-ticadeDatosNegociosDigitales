@@ -1,3 +1,4 @@
+```
 -- Create la base de datos sde Stage_Northwind
 
 create database stage_northwind
@@ -125,3 +126,4 @@ create database datamart_nortwind
   foreign key (tiempo_SKey)
   references dim_tiempo(tiempo_SKey)
   );
+  ```
