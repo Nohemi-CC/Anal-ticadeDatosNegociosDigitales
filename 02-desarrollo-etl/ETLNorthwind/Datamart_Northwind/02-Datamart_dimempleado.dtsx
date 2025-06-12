@@ -1,0 +1,1232 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/4/2025 4:04:34 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="MIMI_C"
+  DTS:CreatorName="MIMI_C\Mimi0"
+  DTS:DTSID="{C0BCC25F-8D98-412D-8758-38EE9FE2CEBE}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="2058"
+  DTS:ObjectName="02-Datamart_dimempleado"
+  DTS:PackageType="5"
+  DTS:VersionBuild="8"
+  DTS:VersionGUID="{1959D0E2-5016-4F61-9C77-3113F2D89D6A}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.datamart_nortwind]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{9CDFEB10-1D9F-4355-99C5-764DE6881D94}"
+      DTS:ObjectName="LocalHost.datamart_nortwind">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;Initial Catalog=datamart_nortwind;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-02-Datamart_dimempleado-{9CDFEB10-1D9F-4355-99C5-764DE6881D94}LocalHost.datamart_nortwind;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.stage_northwind]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{9F27FE1B-8B03-45E1-A50F-9975B8AAA121}"
+      DTS:ObjectName="LocalHost.stage_northwind">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;Initial Catalog=stage_northwind;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-02-Datamart_dimempleado-{9F27FE1B-8B03-45E1-A50F-9975B8AAA121}LocalHost.stage_northwind;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\CARGA_DIMEMPLEADO"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarea Flujo de datos"
+      DTS:DTSID="{D843CA10-5D89-4179-8F44-6EA49BF6C569}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="CARGA_DIMEMPLEADO"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\CARGA_DIMEMPLEADO\DATA_DIMEMPLEADO"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origen de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;7"
+              description="Origen de OLE DB"
+              name="DATA_DIMEMPLEADO"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[dbo].[dim_empleado]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Variable que contiene el comando SQL para ejecutar."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Asignaciones entre los parámetros del comando SQL y las variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\CARGA_DIMEMPLEADO\DATA_DIMEMPLEADO.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.datamart_nortwind]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.datamart_nortwind]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\CARGA_DIMEMPLEADO\DATA_DIMEMPLEADO.Outputs[Salida de origen de OLE DB]"
+                  name="Salida de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA_DIMEMPLEADO\DATA_DIMEMPLEADO.Outputs[Salida de origen de OLE DB].Columns[empleado_SKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CARGA_DIMEMPLEADO\DATA_DIMEMPLEADO.Outputs[Salida de origen de OLE DB].ExternalColumns[empleado_SKey]"
+                      lineageId="Package\CARGA_DIMEMPLEADO\DATA_DIMEMPLEADO.Outputs[Salida de origen de OLE DB].Columns[empleado_SKey]"
+                      name="empleado_SKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CARGA_DIMEMPLEADO\DATA_DIMEMPLEADO.Outputs[Salida de origen de OLE DB].Columns[empleado_codigoBKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CARGA_DIMEMPLEADO\DATA_DIMEMPLEADO.Outputs[Salida de origen de OLE DB].ExternalColumns[empleado_codigoBKey]"
+                      lineageId="Package\CARGA_DIMEMPLEADO\DATA_DIMEMPLEADO.Outputs[Salida de origen de OLE DB].Columns[empleado_codigoBKey]"
+                      name="empleado_codigoBKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CARGA_DIMEMPLEADO\DATA_DIMEMPLEADO.Outputs[Salida de origen de OLE DB].Columns[empleado_NombreCompleto]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CARGA_DIMEMPLEADO\DATA_DIMEMPLEADO.Outputs[Salida de origen de OLE DB].ExternalColumns[empleado_NombreCompleto]"
+                      length="100"
+                      lineageId="Package\CARGA_DIMEMPLEADO\DATA_DIMEMPLEADO.Outputs[Salida de origen de OLE DB].Columns[empleado_NombreCompleto]"
+                      name="empleado_NombreCompleto"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\CARGA_DIMEMPLEADO\DATA_DIMEMPLEADO.Outputs[Salida de origen de OLE DB].ExternalColumns[empleado_SKey]"
+                      dataType="i4"
+                      name="empleado_SKey" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_DIMEMPLEADO\DATA_DIMEMPLEADO.Outputs[Salida de origen de OLE DB].ExternalColumns[empleado_codigoBKey]"
+                      dataType="i4"
+                      name="empleado_codigoBKey" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_DIMEMPLEADO\DATA_DIMEMPLEADO.Outputs[Salida de origen de OLE DB].ExternalColumns[empleado_NombreCompleto]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="empleado_NombreCompleto" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\CARGA_DIMEMPLEADO\DATA_DIMEMPLEADO.Outputs[Salida de error de origen de OLE DB]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA_DIMEMPLEADO\DATA_DIMEMPLEADO.Outputs[Salida de error de origen de OLE DB].Columns[empleado_SKey]"
+                      dataType="i4"
+                      lineageId="Package\CARGA_DIMEMPLEADO\DATA_DIMEMPLEADO.Outputs[Salida de error de origen de OLE DB].Columns[empleado_SKey]"
+                      name="empleado_SKey" />
+                    <outputColumn
+                      refId="Package\CARGA_DIMEMPLEADO\DATA_DIMEMPLEADO.Outputs[Salida de error de origen de OLE DB].Columns[empleado_codigoBKey]"
+                      dataType="i4"
+                      lineageId="Package\CARGA_DIMEMPLEADO\DATA_DIMEMPLEADO.Outputs[Salida de error de origen de OLE DB].Columns[empleado_codigoBKey]"
+                      name="empleado_codigoBKey" />
+                    <outputColumn
+                      refId="Package\CARGA_DIMEMPLEADO\DATA_DIMEMPLEADO.Outputs[Salida de error de origen de OLE DB].Columns[empleado_NombreCompleto]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\CARGA_DIMEMPLEADO\DATA_DIMEMPLEADO.Outputs[Salida de error de origen de OLE DB].Columns[empleado_NombreCompleto]"
+                      name="empleado_NombreCompleto" />
+                    <outputColumn
+                      refId="Package\CARGA_DIMEMPLEADO\DATA_DIMEMPLEADO.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\CARGA_DIMEMPLEADO\DATA_DIMEMPLEADO.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\CARGA_DIMEMPLEADO\DATA_DIMEMPLEADO.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\CARGA_DIMEMPLEADO\DATA_DIMEMPLEADO.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\CARGA_DIMEMPLEADO\Destino de OLE DB"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino de OLE DB"
+              name="Destino de OLE DB"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[dbo].[dim_empleado]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si los valores proporcionados para columnas de identidad se van a copiar al destino. Si es False, los valores de las columnas de identidad se generan automáticamente en el destino. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si las columnas que contienen NULL tendrán NULL insertado en el destino. Si es False, las columnas que contienen NULL tendrán sus valores predeterminados insertados en el destino. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica opciones para usar con la carga rápida. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica cuándo se emiten confirmaciones durante la inserción de datos. El valor 0 especifica que se emitirá una confirmación al final de la inserción de datos. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\CARGA_DIMEMPLEADO\Destino de OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.datamart_nortwind]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.datamart_nortwind]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\CARGA_DIMEMPLEADO\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]"
+                  errorOrTruncationOperation="Insertar"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\CARGA_DIMEMPLEADO\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[empleadoid]"
+                      cachedDataType="i4"
+                      cachedName="empleadoid"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\CARGA_DIMEMPLEADO\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[empleado_codigoBKey]"
+                      lineageId="Package\CARGA_DIMEMPLEADO\LEFT JOIN STAGE EMPLEADO_DIMEMPLEADO.Outputs[Salida de combinación de mezcla].Columns[empleadoid]" />
+                    <inputColumn
+                      refId="Package\CARGA_DIMEMPLEADO\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[NombreCompleto]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="31"
+                      cachedName="NombreCompleto"
+                      externalMetadataColumnId="Package\CARGA_DIMEMPLEADO\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[empleado_NombreCompleto]"
+                      lineageId="Package\CARGA_DIMEMPLEADO\LEFT JOIN STAGE EMPLEADO_DIMEMPLEADO.Outputs[Salida de combinación de mezcla].Columns[NombreCompleto]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\CARGA_DIMEMPLEADO\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[empleado_SKey]"
+                      dataType="i4"
+                      name="empleado_SKey" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_DIMEMPLEADO\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[empleado_codigoBKey]"
+                      dataType="i4"
+                      name="empleado_codigoBKey" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_DIMEMPLEADO\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[empleado_NombreCompleto]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="empleado_NombreCompleto" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\CARGA_DIMEMPLEADO\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de OLE DB"
+                  synchronousInputId="Package\CARGA_DIMEMPLEADO\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA_DIMEMPLEADO\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\CARGA_DIMEMPLEADO\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\CARGA_DIMEMPLEADO\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\CARGA_DIMEMPLEADO\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\CARGA_DIMEMPLEADO\FILTRAR EMPLEADOS NUEVOS"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="División condicional;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Enruta filas de datos a diferentes salidas según el contenido de los datos. Se usan condiciones (expresiones de SSIS) para especificar las filas que se van a enrutar. Por ejemplo, se usa para separar los registros que deben limpiarse de los registros listos para ser cargados o para enrutar solamente un subconjunto de registros."
+              name="FILTRAR EMPLEADOS NUEVOS"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\CARGA_DIMEMPLEADO\FILTRAR EMPLEADOS NUEVOS.Inputs[Entrada de división condicional]"
+                  description="Entrada en la transformación División condicional"
+                  name="Entrada de división condicional">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\CARGA_DIMEMPLEADO\FILTRAR EMPLEADOS NUEVOS.Inputs[Entrada de división condicional].Columns[empleado_codigoBKey]"
+                      cachedDataType="i4"
+                      cachedName="empleado_codigoBKey"
+                      lineageId="Package\CARGA_DIMEMPLEADO\LEFT JOIN STAGE EMPLEADO_DIMEMPLEADO.Outputs[Salida de combinación de mezcla].Columns[empleado_codigoBKey]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\CARGA_DIMEMPLEADO\FILTRAR EMPLEADOS NUEVOS.Outputs[Empleados_Nuevos]"
+                  description="Salida 1 de la transformación División condicional"
+                  errorOrTruncationOperation="Cálculo"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Empleados_Nuevos"
+                  synchronousInputId="Package\CARGA_DIMEMPLEADO\FILTRAR EMPLEADOS NUEVOS.Inputs[Entrada de división condicional]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la expresión. Esta versión de expresión usa identificadores de linaje en lugar de nombres de columna."
+                      name="Expression">[ISNULL](#{Package\CARGA_DIMEMPLEADO\LEFT JOIN STAGE EMPLEADO_DIMEMPLEADO.Outputs[Salida de combinación de mezcla].Columns[empleado_codigoBKey]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la versión descriptiva de la expresión. Esta versión de expresión usa nombres de columna."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(empleado_codigoBKey)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la posición de la condición en la lista de condiciones que evalúa la transformación. El orden de evaluación es del menor al mayor valor."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\CARGA_DIMEMPLEADO\FILTRAR EMPLEADOS NUEVOS.Outputs[Salida predeterminada de división condicional]"
+                  description="Salida predeterminada de la transformación División condicional"
+                  exclusionGroup="1"
+                  name="Salida predeterminada de división condicional"
+                  synchronousInputId="Package\CARGA_DIMEMPLEADO\FILTRAR EMPLEADOS NUEVOS.Inputs[Entrada de división condicional]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\CARGA_DIMEMPLEADO\FILTRAR EMPLEADOS NUEVOS.Outputs[Salida de error de división condicional]"
+                  description="Salida de error de la transformación División condicional"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de división condicional"
+                  synchronousInputId="Package\CARGA_DIMEMPLEADO\FILTRAR EMPLEADOS NUEVOS.Inputs[Entrada de división condicional]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA_DIMEMPLEADO\FILTRAR EMPLEADOS NUEVOS.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\CARGA_DIMEMPLEADO\FILTRAR EMPLEADOS NUEVOS.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\CARGA_DIMEMPLEADO\FILTRAR EMPLEADOS NUEVOS.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\CARGA_DIMEMPLEADO\FILTRAR EMPLEADOS NUEVOS.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\CARGA_DIMEMPLEADO\LEFT JOIN STAGE EMPLEADO_DIMEMPLEADO"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Combinación de mezcla;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Combina dos flujos de datos ordenados en uno solo mediante la combinación FULL, LEFT o INNER. Se recomienda esta transformación cuando se pueden ordenar los flujos de datos en sus orígenes."
+              name="LEFT JOIN STAGE EMPLEADO_DIMEMPLEADO"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el tipo de combinación que se debe realizar."
+                  name="JoinType"
+                  typeConverter="JoinType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número de columnas de la clave de ordenación."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si los valores NULL se tratan como valores iguales."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indica la cantidad máxima solicitada de búferes por entrada antes del bloqueo."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\CARGA_DIMEMPLEADO\LEFT JOIN STAGE EMPLEADO_DIMEMPLEADO.Inputs[Entrada izquierda de combinación de mezcla]"
+                  hasSideEffects="true"
+                  name="Entrada izquierda de combinación de mezcla">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\CARGA_DIMEMPLEADO\LEFT JOIN STAGE EMPLEADO_DIMEMPLEADO.Inputs[Entrada izquierda de combinación de mezcla].Columns[empleadoid]"
+                      cachedDataType="i4"
+                      cachedName="empleadoid"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\CARGA_DIMEMPLEADO\ORDENAE_STAGE_EMPLEADO.Outputs[Salida de ordenación].Columns[empleadoid]" />
+                    <inputColumn
+                      refId="Package\CARGA_DIMEMPLEADO\LEFT JOIN STAGE EMPLEADO_DIMEMPLEADO.Inputs[Entrada izquierda de combinación de mezcla].Columns[NombreCompleto]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="31"
+                      cachedName="NombreCompleto"
+                      lineageId="Package\CARGA_DIMEMPLEADO\ORDENAE_STAGE_EMPLEADO.Outputs[Salida de ordenación].Columns[NombreCompleto]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\CARGA_DIMEMPLEADO\LEFT JOIN STAGE EMPLEADO_DIMEMPLEADO.Inputs[Entrada derecha de combinación de mezcla]"
+                  hasSideEffects="true"
+                  name="Entrada derecha de combinación de mezcla">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\CARGA_DIMEMPLEADO\LEFT JOIN STAGE EMPLEADO_DIMEMPLEADO.Inputs[Entrada derecha de combinación de mezcla].Columns[empleado_codigoBKey]"
+                      cachedDataType="i4"
+                      cachedName="empleado_codigoBKey"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\CARGA_DIMEMPLEADO\ORDENAR_DIMEMPLEADO.Outputs[Salida de ordenación].Columns[empleado_codigoBKey]" />
+                    <inputColumn
+                      refId="Package\CARGA_DIMEMPLEADO\LEFT JOIN STAGE EMPLEADO_DIMEMPLEADO.Inputs[Entrada derecha de combinación de mezcla].Columns[empleado_SKey]"
+                      cachedDataType="i4"
+                      cachedName="empleado_SKey"
+                      lineageId="Package\CARGA_DIMEMPLEADO\ORDENAR_DIMEMPLEADO.Outputs[Salida de ordenación].Columns[empleado_SKey]" />
+                    <inputColumn
+                      refId="Package\CARGA_DIMEMPLEADO\LEFT JOIN STAGE EMPLEADO_DIMEMPLEADO.Inputs[Entrada derecha de combinación de mezcla].Columns[empleado_NombreCompleto]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="empleado_NombreCompleto"
+                      lineageId="Package\CARGA_DIMEMPLEADO\ORDENAR_DIMEMPLEADO.Outputs[Salida de ordenación].Columns[empleado_NombreCompleto]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\CARGA_DIMEMPLEADO\LEFT JOIN STAGE EMPLEADO_DIMEMPLEADO.Outputs[Salida de combinación de mezcla]"
+                  isSorted="true"
+                  name="Salida de combinación de mezcla">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA_DIMEMPLEADO\LEFT JOIN STAGE EMPLEADO_DIMEMPLEADO.Outputs[Salida de combinación de mezcla].Columns[empleadoid]"
+                      dataType="i4"
+                      lineageId="Package\CARGA_DIMEMPLEADO\LEFT JOIN STAGE EMPLEADO_DIMEMPLEADO.Outputs[Salida de combinación de mezcla].Columns[empleadoid]"
+                      name="empleadoid"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\CARGA_DIMEMPLEADO\LEFT JOIN STAGE EMPLEADO_DIMEMPLEADO.Inputs[Entrada izquierda de combinación de mezcla].Columns[empleadoid]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_DIMEMPLEADO\LEFT JOIN STAGE EMPLEADO_DIMEMPLEADO.Outputs[Salida de combinación de mezcla].Columns[NombreCompleto]"
+                      codePage="1252"
+                      dataType="str"
+                      length="31"
+                      lineageId="Package\CARGA_DIMEMPLEADO\LEFT JOIN STAGE EMPLEADO_DIMEMPLEADO.Outputs[Salida de combinación de mezcla].Columns[NombreCompleto]"
+                      name="NombreCompleto">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\CARGA_DIMEMPLEADO\LEFT JOIN STAGE EMPLEADO_DIMEMPLEADO.Inputs[Entrada izquierda de combinación de mezcla].Columns[NombreCompleto]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_DIMEMPLEADO\LEFT JOIN STAGE EMPLEADO_DIMEMPLEADO.Outputs[Salida de combinación de mezcla].Columns[empleado_SKey]"
+                      dataType="i4"
+                      lineageId="Package\CARGA_DIMEMPLEADO\LEFT JOIN STAGE EMPLEADO_DIMEMPLEADO.Outputs[Salida de combinación de mezcla].Columns[empleado_SKey]"
+                      name="empleado_SKey">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\CARGA_DIMEMPLEADO\LEFT JOIN STAGE EMPLEADO_DIMEMPLEADO.Inputs[Entrada derecha de combinación de mezcla].Columns[empleado_SKey]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_DIMEMPLEADO\LEFT JOIN STAGE EMPLEADO_DIMEMPLEADO.Outputs[Salida de combinación de mezcla].Columns[empleado_codigoBKey]"
+                      dataType="i4"
+                      lineageId="Package\CARGA_DIMEMPLEADO\LEFT JOIN STAGE EMPLEADO_DIMEMPLEADO.Outputs[Salida de combinación de mezcla].Columns[empleado_codigoBKey]"
+                      name="empleado_codigoBKey">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\CARGA_DIMEMPLEADO\LEFT JOIN STAGE EMPLEADO_DIMEMPLEADO.Inputs[Entrada derecha de combinación de mezcla].Columns[empleado_codigoBKey]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_DIMEMPLEADO\LEFT JOIN STAGE EMPLEADO_DIMEMPLEADO.Outputs[Salida de combinación de mezcla].Columns[empleado_NombreCompleto]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\CARGA_DIMEMPLEADO\LEFT JOIN STAGE EMPLEADO_DIMEMPLEADO.Outputs[Salida de combinación de mezcla].Columns[empleado_NombreCompleto]"
+                      name="empleado_NombreCompleto">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\CARGA_DIMEMPLEADO\LEFT JOIN STAGE EMPLEADO_DIMEMPLEADO.Inputs[Entrada derecha de combinación de mezcla].Columns[empleado_NombreCompleto]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\CARGA_DIMEMPLEADO\ORDENAE_STAGE_EMPLEADO"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
+              name="ORDENAE_STAGE_EMPLEADO"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si la transformación Ordenar quita filas con valores de ordenación duplicados."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número máximo de subprocesos que se deben usar para la ordenación."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\CARGA_DIMEMPLEADO\ORDENAE_STAGE_EMPLEADO.Inputs[Entrada de ordenación]"
+                  name="Entrada de ordenación">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\CARGA_DIMEMPLEADO\ORDENAE_STAGE_EMPLEADO.Inputs[Entrada de ordenación].Columns[empleadoid]"
+                      cachedDataType="i4"
+                      cachedName="empleadoid"
+                      lineageId="Package\CARGA_DIMEMPLEADO\STAGE_EMPLEADO.Outputs[Salida de origen de OLE DB].Columns[empleadoid]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\CARGA_DIMEMPLEADO\ORDENAE_STAGE_EMPLEADO.Inputs[Entrada de ordenación].Columns[NombreCompleto]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="31"
+                      cachedName="NombreCompleto"
+                      lineageId="Package\CARGA_DIMEMPLEADO\STAGE_EMPLEADO.Outputs[Salida de origen de OLE DB].Columns[NombreCompleto]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\CARGA_DIMEMPLEADO\ORDENAE_STAGE_EMPLEADO.Outputs[Salida de ordenación]"
+                  isSorted="true"
+                  name="Salida de ordenación">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA_DIMEMPLEADO\ORDENAE_STAGE_EMPLEADO.Outputs[Salida de ordenación].Columns[empleadoid]"
+                      dataType="i4"
+                      lineageId="Package\CARGA_DIMEMPLEADO\ORDENAE_STAGE_EMPLEADO.Outputs[Salida de ordenación].Columns[empleadoid]"
+                      name="empleadoid"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\CARGA_DIMEMPLEADO\STAGE_EMPLEADO.Outputs[Salida de origen de OLE DB].Columns[empleadoid]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_DIMEMPLEADO\ORDENAE_STAGE_EMPLEADO.Outputs[Salida de ordenación].Columns[NombreCompleto]"
+                      codePage="1252"
+                      dataType="str"
+                      length="31"
+                      lineageId="Package\CARGA_DIMEMPLEADO\ORDENAE_STAGE_EMPLEADO.Outputs[Salida de ordenación].Columns[NombreCompleto]"
+                      name="NombreCompleto">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\CARGA_DIMEMPLEADO\STAGE_EMPLEADO.Outputs[Salida de origen de OLE DB].Columns[NombreCompleto]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\CARGA_DIMEMPLEADO\ORDENAR_DIMEMPLEADO"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
+              name="ORDENAR_DIMEMPLEADO"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si la transformación Ordenar quita filas con valores de ordenación duplicados."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número máximo de subprocesos que se deben usar para la ordenación."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\CARGA_DIMEMPLEADO\ORDENAR_DIMEMPLEADO.Inputs[Entrada de ordenación]"
+                  name="Entrada de ordenación">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\CARGA_DIMEMPLEADO\ORDENAR_DIMEMPLEADO.Inputs[Entrada de ordenación].Columns[empleado_SKey]"
+                      cachedDataType="i4"
+                      cachedName="empleado_SKey"
+                      lineageId="Package\CARGA_DIMEMPLEADO\DATA_DIMEMPLEADO.Outputs[Salida de origen de OLE DB].Columns[empleado_SKey]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\CARGA_DIMEMPLEADO\ORDENAR_DIMEMPLEADO.Inputs[Entrada de ordenación].Columns[empleado_codigoBKey]"
+                      cachedDataType="i4"
+                      cachedName="empleado_codigoBKey"
+                      lineageId="Package\CARGA_DIMEMPLEADO\DATA_DIMEMPLEADO.Outputs[Salida de origen de OLE DB].Columns[empleado_codigoBKey]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\CARGA_DIMEMPLEADO\ORDENAR_DIMEMPLEADO.Inputs[Entrada de ordenación].Columns[empleado_NombreCompleto]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="empleado_NombreCompleto"
+                      lineageId="Package\CARGA_DIMEMPLEADO\DATA_DIMEMPLEADO.Outputs[Salida de origen de OLE DB].Columns[empleado_NombreCompleto]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\CARGA_DIMEMPLEADO\ORDENAR_DIMEMPLEADO.Outputs[Salida de ordenación]"
+                  isSorted="true"
+                  name="Salida de ordenación">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA_DIMEMPLEADO\ORDENAR_DIMEMPLEADO.Outputs[Salida de ordenación].Columns[empleado_SKey]"
+                      dataType="i4"
+                      lineageId="Package\CARGA_DIMEMPLEADO\ORDENAR_DIMEMPLEADO.Outputs[Salida de ordenación].Columns[empleado_SKey]"
+                      name="empleado_SKey">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\CARGA_DIMEMPLEADO\DATA_DIMEMPLEADO.Outputs[Salida de origen de OLE DB].Columns[empleado_SKey]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_DIMEMPLEADO\ORDENAR_DIMEMPLEADO.Outputs[Salida de ordenación].Columns[empleado_codigoBKey]"
+                      dataType="i4"
+                      lineageId="Package\CARGA_DIMEMPLEADO\ORDENAR_DIMEMPLEADO.Outputs[Salida de ordenación].Columns[empleado_codigoBKey]"
+                      name="empleado_codigoBKey"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\CARGA_DIMEMPLEADO\DATA_DIMEMPLEADO.Outputs[Salida de origen de OLE DB].Columns[empleado_codigoBKey]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_DIMEMPLEADO\ORDENAR_DIMEMPLEADO.Outputs[Salida de ordenación].Columns[empleado_NombreCompleto]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\CARGA_DIMEMPLEADO\ORDENAR_DIMEMPLEADO.Outputs[Salida de ordenación].Columns[empleado_NombreCompleto]"
+                      name="empleado_NombreCompleto">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\CARGA_DIMEMPLEADO\DATA_DIMEMPLEADO.Outputs[Salida de origen de OLE DB].Columns[empleado_NombreCompleto]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\CARGA_DIMEMPLEADO\STAGE_EMPLEADO"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origen de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;7"
+              description="Origen de OLE DB"
+              name="STAGE_EMPLEADO"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT se.empleadoid, CONCAT(se.nombre, ' ', se.apellido) as 'NombreCompleto'
+FROM stage_northwind.dbo.empleados as se</property>
+                <property
+                  dataType="System.String"
+                  description="Variable que contiene el comando SQL para ejecutar."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="Asignaciones entre los parámetros del comando SQL y las variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\CARGA_DIMEMPLEADO\STAGE_EMPLEADO.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.stage_northwind]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.stage_northwind]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\CARGA_DIMEMPLEADO\STAGE_EMPLEADO.Outputs[Salida de origen de OLE DB]"
+                  name="Salida de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA_DIMEMPLEADO\STAGE_EMPLEADO.Outputs[Salida de origen de OLE DB].Columns[empleadoid]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CARGA_DIMEMPLEADO\STAGE_EMPLEADO.Outputs[Salida de origen de OLE DB].ExternalColumns[empleadoid]"
+                      lineageId="Package\CARGA_DIMEMPLEADO\STAGE_EMPLEADO.Outputs[Salida de origen de OLE DB].Columns[empleadoid]"
+                      name="empleadoid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CARGA_DIMEMPLEADO\STAGE_EMPLEADO.Outputs[Salida de origen de OLE DB].Columns[NombreCompleto]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CARGA_DIMEMPLEADO\STAGE_EMPLEADO.Outputs[Salida de origen de OLE DB].ExternalColumns[NombreCompleto]"
+                      length="31"
+                      lineageId="Package\CARGA_DIMEMPLEADO\STAGE_EMPLEADO.Outputs[Salida de origen de OLE DB].Columns[NombreCompleto]"
+                      name="NombreCompleto"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\CARGA_DIMEMPLEADO\STAGE_EMPLEADO.Outputs[Salida de origen de OLE DB].ExternalColumns[empleadoid]"
+                      dataType="i4"
+                      name="empleadoid" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_DIMEMPLEADO\STAGE_EMPLEADO.Outputs[Salida de origen de OLE DB].ExternalColumns[NombreCompleto]"
+                      codePage="1252"
+                      dataType="str"
+                      length="31"
+                      name="NombreCompleto" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\CARGA_DIMEMPLEADO\STAGE_EMPLEADO.Outputs[Salida de error de origen de OLE DB]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA_DIMEMPLEADO\STAGE_EMPLEADO.Outputs[Salida de error de origen de OLE DB].Columns[empleadoid]"
+                      dataType="i4"
+                      lineageId="Package\CARGA_DIMEMPLEADO\STAGE_EMPLEADO.Outputs[Salida de error de origen de OLE DB].Columns[empleadoid]"
+                      name="empleadoid" />
+                    <outputColumn
+                      refId="Package\CARGA_DIMEMPLEADO\STAGE_EMPLEADO.Outputs[Salida de error de origen de OLE DB].Columns[NombreCompleto]"
+                      codePage="1252"
+                      dataType="str"
+                      length="31"
+                      lineageId="Package\CARGA_DIMEMPLEADO\STAGE_EMPLEADO.Outputs[Salida de error de origen de OLE DB].Columns[NombreCompleto]"
+                      name="NombreCompleto" />
+                    <outputColumn
+                      refId="Package\CARGA_DIMEMPLEADO\STAGE_EMPLEADO.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\CARGA_DIMEMPLEADO\STAGE_EMPLEADO.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\CARGA_DIMEMPLEADO\STAGE_EMPLEADO.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\CARGA_DIMEMPLEADO\STAGE_EMPLEADO.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\CARGA_DIMEMPLEADO.Paths[Empleados_Nuevos]"
+              endId="Package\CARGA_DIMEMPLEADO\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]"
+              name="Empleados_Nuevos"
+              startId="Package\CARGA_DIMEMPLEADO\FILTRAR EMPLEADOS NUEVOS.Outputs[Empleados_Nuevos]" />
+            <path
+              refId="Package\CARGA_DIMEMPLEADO.Paths[Salida de combinación de mezcla]"
+              endId="Package\CARGA_DIMEMPLEADO\FILTRAR EMPLEADOS NUEVOS.Inputs[Entrada de división condicional]"
+              name="Salida de combinación de mezcla"
+              startId="Package\CARGA_DIMEMPLEADO\LEFT JOIN STAGE EMPLEADO_DIMEMPLEADO.Outputs[Salida de combinación de mezcla]" />
+            <path
+              refId="Package\CARGA_DIMEMPLEADO.Paths[Salida de ordenación]"
+              endId="Package\CARGA_DIMEMPLEADO\LEFT JOIN STAGE EMPLEADO_DIMEMPLEADO.Inputs[Entrada izquierda de combinación de mezcla]"
+              name="Salida de ordenación"
+              startId="Package\CARGA_DIMEMPLEADO\ORDENAE_STAGE_EMPLEADO.Outputs[Salida de ordenación]" />
+            <path
+              refId="Package\CARGA_DIMEMPLEADO.Paths[Salida de ordenación1]"
+              endId="Package\CARGA_DIMEMPLEADO\LEFT JOIN STAGE EMPLEADO_DIMEMPLEADO.Inputs[Entrada derecha de combinación de mezcla]"
+              name="Salida de ordenación"
+              startId="Package\CARGA_DIMEMPLEADO\ORDENAR_DIMEMPLEADO.Outputs[Salida de ordenación]" />
+            <path
+              refId="Package\CARGA_DIMEMPLEADO.Paths[Salida de origen de OLE DB]"
+              endId="Package\CARGA_DIMEMPLEADO\ORDENAE_STAGE_EMPLEADO.Inputs[Entrada de ordenación]"
+              name="Salida de origen de OLE DB"
+              startId="Package\CARGA_DIMEMPLEADO\STAGE_EMPLEADO.Outputs[Salida de origen de OLE DB]" />
+            <path
+              refId="Package\CARGA_DIMEMPLEADO.Paths[Salida de origen de OLE DB1]"
+              endId="Package\CARGA_DIMEMPLEADO\ORDENAR_DIMEMPLEADO.Inputs[Entrada de ordenación]"
+              name="Salida de origen de OLE DB"
+              startId="Package\CARGA_DIMEMPLEADO\DATA_DIMEMPLEADO.Outputs[Salida de origen de OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="202.666666666667,42.6666666666667"
+          Id="Package\CARGA_DIMEMPLEADO"
+          TopLeft="353.124984214083,88.2631569256248" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\CARGA_DIMEMPLEADO">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="181.333333333334,42.6666666666667"
+          Id="Package\CARGA_DIMEMPLEADO\STAGE_EMPLEADO"
+          TopLeft="201.249991003424,87.5789464068215" />
+        <NodeLayout
+          Size="193.333333333334,42.6666666666667"
+          Id="Package\CARGA_DIMEMPLEADO\DATA_DIMEMPLEADO"
+          TopLeft="511.874977117405,87.5789464068215" />
+        <NodeLayout
+          Size="240,42.6666666666667"
+          Id="Package\CARGA_DIMEMPLEADO\ORDENAE_STAGE_EMPLEADO"
+          TopLeft="171.249992344529,183.368419039283" />
+        <NodeLayout
+          Size="217.333333333334,42.6666666666667"
+          Id="Package\CARGA_DIMEMPLEADO\ORDENAR_DIMEMPLEADO"
+          TopLeft="501.87497756444,189.526313708512" />
+        <EdgeLayout
+          Id="Package\CARGA_DIMEMPLEADO.Paths[Salida de origen de OLE DB]"
+          TopLeft="291.58332500731,130.245613073488">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,53.1228059657943"
+              Start="0,0"
+              End="0,45.6228059657943">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.6228059657943" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CARGA_DIMEMPLEADO.Paths[Salida de origen de OLE DB1]"
+          TopLeft="609.541644007589,130.245613073488">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.2807006350241"
+              Start="0,0"
+              End="0,51.7807006350241">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.7807006350241" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="318.666666666667,42.6666666666667"
+          Id="Package\CARGA_DIMEMPLEADO\LEFT JOIN STAGE EMPLEADO_DIMEMPLEADO"
+          TopLeft="298.124986672774,316.789470205925" />
+        <EdgeLayout
+          Id="Package\CARGA_DIMEMPLEADO.Paths[Salida de ordenación]"
+          TopLeft="291.249992344529,226.035085705949">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="166.208327661579,90.7543844999755"
+              Start="0,0"
+              End="166.208327661579,83.2543844999755">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.3771922499877" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,41.3771922499877"
+                    Point2="0,45.3771922499877"
+                    Point3="4,45.3771922499877" />
+                  <mssgle:LineSegment
+                    End="162.208327661579,45.3771922499877" />
+                  <mssgle:CubicBezierSegment
+                    Point1="162.208327661579,45.3771922499877"
+                    Point2="166.208327661579,45.3771922499877"
+                    Point3="166.208327661579,49.3771922499877" />
+                  <mssgle:LineSegment
+                    End="166.208327661579,83.2543844999755" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CARGA_DIMEMPLEADO.Paths[Salida de ordenación1]"
+          TopLeft="610.541644231107,232.192980375179">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-101.305546447221,84.5964898307458"
+              Start="0,0"
+              End="-101.305546447221,77.0964898307458">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.5043157440838" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,46.5043157440838"
+                    Point2="0,50.5043157440838"
+                    Point3="-4,50.5043157440838" />
+                  <mssgle:LineSegment
+                    End="-97.3055464472213,50.5043157440838" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-97.3055464472213,50.5043157440838"
+                    Point2="-101.305546447221,50.5043157440838"
+                    Point3="-101.305546447221,54.5043157440838" />
+                  <mssgle:LineSegment
+                    End="-101.305546447221,77.0964898307458" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="241.333333333334,42.6666666666667"
+          Id="Package\CARGA_DIMEMPLEADO\FILTRAR EMPLEADOS NUEVOS"
+          TopLeft="343.124984661118,396.105259116172" />
+        <EdgeLayout
+          Id="Package\CARGA_DIMEMPLEADO.Paths[Salida de combinación de mezcla]"
+          TopLeft="460.624985666946,359.456136872591">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36.6491222435803"
+              Start="0,0"
+              End="0,29.1491222435803">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.1491222435803" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="172,42.6666666666667"
+          Id="Package\CARGA_DIMEMPLEADO\Destino de OLE DB"
+          TopLeft="378.124983096496,480.210522228991" />
+        <EdgeLayout
+          Id="Package\CARGA_DIMEMPLEADO.Paths[Empleados_Nuevos]"
+          TopLeft="463.95831721214,438.771925782838">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,41.4385964461531"
+              Start="0,0"
+              End="0,33.9385964461531">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.9385964461531" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-43.337578125,11.1646107230765,86.67515625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\CARGA_DIMEMPLEADO\STAGE_EMPLEADO">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\CARGA_DIMEMPLEADO\DATA_DIMEMPLEADO">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\CARGA_DIMEMPLEADO\Destino de OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
